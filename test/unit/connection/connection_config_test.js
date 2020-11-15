@@ -253,6 +253,39 @@ describe('ConnectionConfig: basic', function ()
             fetchAsString: ['invalid']
           },
         errorCode: ErrorCodes.ERR_CONN_CREATE_INVALID_FETCH_AS_STRING_VALUES
+      },
+      {
+        name: 'invalid authenticator',
+        options:
+          {
+            username: 'username',
+            password: 'password',
+            account: 'account',
+            authenticator: 0
+          },
+        errorCode: ErrorCodes.ERR_CONN_CREATE_INVALID_AUTHENTICATOR
+      },
+      {
+        name: 'invalid authenticator',
+        options:
+          {
+            username: 'username',
+            password: 'password',
+            account: 'account',
+            authenticator: ['invalid']
+          },
+        errorCode: ErrorCodes.ERR_CONN_CREATE_INVALID_AUTHENTICATOR
+      },
+      {
+        name: 'unknown authenticator',
+        options:
+          {
+            username: 'username',
+            password: 'password',
+            account: 'account',
+            authenticator: 'unknown'
+          },
+        errorCode: ErrorCodes.ERR_CONN_CREATE_INVALID_AUTHENTICATOR
       }
     ];
 
@@ -454,6 +487,38 @@ describe('ConnectionConfig: basic', function ()
             username: 'username',
             password: 'password',
             account: 'account'
+          }
+      },
+      {
+        name: 'default snowflake authenticator',
+        input:
+          {
+            username: 'username',
+            password: 'password',
+            account: 'account-123xyz.us-west-2.global',
+            authenticator: ''
+          },
+        options:
+          {
+            accessUrl: 'https://account-123xyz.us-west-2.global.snowflakecomputing.com',
+            username: 'username',
+            password: 'password',
+            account: 'account',
+            authenticator: 'snowflake'
+          }
+      },
+      {
+        name: 'externalbrowser authenticator',
+        input:
+          {
+            account: 'account-123xyz.us-west-2.global',
+            authenticator: 'externalbrowser'
+          },
+        options:
+          {
+            accessUrl: 'https://account-123xyz.us-west-2.global.snowflakecomputing.com',
+            account: 'account',
+            authenticator: 'externalbrowser'
           }
       }
     ];
