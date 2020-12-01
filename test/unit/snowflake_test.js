@@ -20,7 +20,6 @@ var connectionOptionsClientSessionKeepAlive = mockConnectionOptions.clientSessio
 var connectionOptionsForSessionGone = mockConnectionOptions.sessionGone;
 const connectionOptionsFor504 = mockConnectionOptions.http504;
 const connectionOptionsTreatIntegerAsBigInt = mockConnectionOptions.treatIntAsBigInt;
-const connectionOptionsExternalBrowser = mockConnectionOptions.externalbrowser;
 
 describe('snowflake.createConnection() synchronous errors', function ()
 {
@@ -361,21 +360,6 @@ describe('connection.connect() success', function ()
   it('connect() success', function (done)
   {
     var connection = snowflake.createConnection(connectionOptions);
-    var ret = connection.connect(function (err, conn)
-    {
-      assert.ok(!err, 'there should be no error');
-      assert.strictEqual(conn, connection,
-        'the connect() callback should be invoked with the connection');
-      done();
-    });
-
-    assert.strictEqual(
-      connection, ret, 'connect() should return the connection');
-  });
-
-  it.only('connect() success with SSO externalbrowser auth', function (done)
-  {
-    var connection = snowflake.createConnection(connectionOptionsExternalBrowser);
     var ret = connection.connect(function (err, conn)
     {
       assert.ok(!err, 'there should be no error');
@@ -1853,10 +1837,11 @@ describe('snowflake.destroyConnection()', function ()
   });
 });
 
-/*
 describe('snowflake.connect() with 504', function ()
 {
-
+  /*
+   * The connection is retired three times and get success.
+   */
   it('retry 504', function (done)
   {
     var connection = snowflake.createConnection(connectionOptionsFor504);
@@ -1881,7 +1866,6 @@ describe('snowflake.connect() with 504', function ()
       done)
   });
 });
-*/
 
 // TODO: test large results
 // TODO: test token renewal

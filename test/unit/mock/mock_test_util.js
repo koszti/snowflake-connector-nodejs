@@ -79,14 +79,6 @@ var connectionOptionsWithTreatIntAsBigInt =
     jsTreatIntegerAsBigInt: true
   };
 
-var connectionOptionsWithExternalBrowser =
-  {
-    accessUrl: 'http://fakeaccount.snowflakecomputing.com',
-    username: 'fakeusername',
-    account: 'fakeaccount',
-    authenticator: 'externalbrowser'
-  };
-
 exports.connectionOptions =
   {
     default: connectionOptions,
@@ -95,6 +87,5 @@ exports.connectionOptions =
     clientSessionKeepAlive: connectionOptionsWithClientSessionKeepAlive,
     sessionGone: connectionOptionsForSessionGone,
     http504: connectionOptions504,
-    treatIntAsBigInt: connectionOptionsWithTreatIntAsBigInt,
-    externalbrowser: connectionOptionsWithExternalBrowser
+    treatIntAsBigInt: connectionOptionsWithTreatIntAsBigInt
   };
