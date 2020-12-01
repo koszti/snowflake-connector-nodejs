@@ -131,6 +131,39 @@ describe('snowflake.createConnection() synchronous errors', function ()
             account: 0
           },
         errorCode: ErrorCodes.ERR_CONN_CREATE_INVALID_ACCOUNT
+      },
+      {
+        name: 'invalid authenticator',
+        options:
+          {
+            username: 'username',
+            password: 'password',
+            account: 'account',
+            authenticator: 0
+          },
+        errorCode: ErrorCodes.ERR_CONN_CREATE_INVALID_AUTHENTICATOR
+      },
+      {
+        name: 'invalid authenticator',
+        options:
+          {
+            username: 'username',
+            password: 'password',
+            account: 'account',
+            authenticator: ['invalid']
+          },
+        errorCode: ErrorCodes.ERR_CONN_CREATE_INVALID_AUTHENTICATOR
+      },
+      {
+        name: 'unknown authenticator',
+        options:
+          {
+            username: 'username',
+            password: 'password',
+            account: 'account',
+            authenticator: 'unknown'
+          },
+        errorCode: ErrorCodes.ERR_CONN_CREATE_INVALID_AUTHENTICATOR
       }
     ];
 

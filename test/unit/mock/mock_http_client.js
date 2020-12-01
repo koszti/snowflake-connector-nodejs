@@ -1140,6 +1140,47 @@ function buildRequestOutputMappings(clientInfo)
       request:
         {
           method: 'POST',
+          url: 'http://fakeaccount.snowflakecomputing.com/session/authenticator-request',
+          headers:
+            {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+          json:
+            {
+              data:
+                {
+                  AUTHENTICATOR: 'externalbrowser',
+                  BROWSER_MODE_REDIRECT_PORT: 1234
+                }
+            }
+        },
+      output:
+        {
+          err: null,
+          response:
+            {
+              statusCode: 200,
+              statusMessage: "OK",
+              body:
+                {
+                  "data":
+                    {
+                      "tokenUrl": null,
+                      "ssoUrl": "http://fakesso/sso/saml?1234567890",
+                      "proofKey": "fakeproofkey"
+                    },
+                  "message": null,
+                  "code": null,
+                  "success": true
+                }
+            }
+        }
+    },
+    {
+      request:
+        {
+          method: 'POST',
           url: 'http://fakeaccount.snowflakecomputing.com/queries/v1/query-request?requestId=foobar',
           headers:
             {
